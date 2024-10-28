@@ -1,0 +1,112 @@
+.recipeContainer {
+    width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+
+.backLink {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+.likeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.likeButton:hover {
+    transform: scale(1);
+}
+
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tag:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.recipeImage {
+    width: 80%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.recipeDetails {
+    margin-bottom: 1rem;
+}
+
+.sectionTitle {
+    color: #007bff;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.productList, .directionsList {
+    list-style-type: none;
+    padding: 0;
+    counter-reset: item;
+}
+
+.productItem, .directionItem {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-start;
+    direction: rtl;
+}
+
+.itemNumber {
+    min-width: 25px;
+    margin-left: 10px;
+    font-weight: bold;
+    text-align: right;
+    line-height: normal; 
+    display: inline-block;
+}
+
+.itemContent {
+    flex: 1;
+    text-align: right;
+    display: inline-block;
+}

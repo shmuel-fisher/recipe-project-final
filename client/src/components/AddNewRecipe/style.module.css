@@ -1,0 +1,123 @@
+/* .lessButton{
+    margin-left: 30%;
+} */
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"); */
+/* .A {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+}
+
+.openModalBtn {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  background-color: cornflowerblue;
+  color: white;
+  cursor: pointer;
+}
+body {
+  padding: 0;
+  margin: 0;
+} */
+
+/* style.module.css */
+
+/* כללי */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* עיצוב של הטופס */
+form {
+ width: 100%;
+  background-color: #ffffff;
+  padding: 50px;
+  margin: 20px auto;
+  max-width:1000px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="time"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* עיצוב ספציפי לכפתורים בדף זה */
+.customButton {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.customButton:hover {
+  background-color: #e0e0e0;
+}
+
+/* עיצוב ספציפי לכפתורי מחיקה */
+.lessButton {
+  background-color: #f0f0f0;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.lessButton:hover {
+  background-color: #e0e0e0;
+}
+
+/* עיצוב ספציפי לכפתור Modal */
+.openModalBtn {
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.openModalBtn:hover {
+  background-color: #218838;
+}

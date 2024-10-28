@@ -1,0 +1,52 @@
+/* .content{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90%;
+  
+}
+.item{
+    display:flex;
+     flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;  
+     height: 100px;
+    
+} */
+
+
+
+/* AI*/
+
+.content {
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .item {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+} */
+
+/* button:hover {
+  background-color: #0056b3;
+} */

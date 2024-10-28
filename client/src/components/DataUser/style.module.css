@@ -1,0 +1,23 @@
+/* div{
+    width: 100px;
+    height: 250px;
+    border-radius: 2px solid black;
+} */
+
+
+div {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+  
+  a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }

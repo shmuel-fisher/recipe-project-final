@@ -1,0 +1,18 @@
+body{
+    /* background-color:rgb(230, 160, 0); */
+}
+.signFrom input  {
+    width: 500px;
+    height: 50px;
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: orangered; 
+    
+}
+.signFrom input::placeholder {
+    color: #ff0000; 
+  }
+.submit{
+background-color: orange;
+}
