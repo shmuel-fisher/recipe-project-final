@@ -1,4 +1,3 @@
-import './App.css'
 import Layout from './components/Layout'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Recipe from './components/Recipe'
@@ -14,29 +13,29 @@ import AdminEditRecipe from './components/AdminEditResipe'
 
 
 function App() {
-
   //משתנים בסטייט ששומרים על מתכון ועל משתמש לכל האתר
   const [curentRecipe, setCurentRecipe] = useState({});
   const [curentUser, setCurentUser] = useState({});
 
-  return (<div>
-    <DataContext.Provider value={{ curentUser, setCurentUser, curentRecipe, setCurentRecipe }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/recipe/:id' element={<Recipe />} />
-          <Route path='/SignIn' element={< SignIn />} />
-          <Route path='/Login' element={< Login />} />
-          <Route path='/newRecipe' element={<AddNewRecipe />}/>
-          <Route path='/favoriteRecipe' element={<UserFavoriteRecipe />}/>
-          <Route path='/userRecipes' element={<UserRecipes/>}/>
-          <Route path='/deleteRecipe' element={<DeleteRecipe/>}/>
-          <Route path="/delete-recipe" element={<DeleteRecipe />} />
-          <Route path="/edit-recipe/:id" element={<AdminEditRecipe />} />
-          <Route path='/' element={<Layout />} />
-        </Routes>
-      </BrowserRouter>
-    </DataContext.Provider>
-  </div >
+  return (
+    <div>
+      <DataContext.Provider value={{ curentUser, setCurentUser, curentRecipe, setCurentRecipe }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/recipe/:id' element={<Recipe />} />
+            <Route path='/SignIn' element={< SignIn />} />
+            <Route path='/Login' element={< Login />} />
+            <Route path='/newRecipe' element={<AddNewRecipe />} />
+            <Route path='/favoriteRecipe' element={<UserFavoriteRecipe />} />
+            <Route path='/userRecipes' element={<UserRecipes />} />
+            <Route path='/deleteRecipe' element={<DeleteRecipe />} />
+            <Route path="/delete-recipe" element={<DeleteRecipe />} />
+            <Route path="/edit-recipe/:id" element={<AdminEditRecipe />} />
+            <Route path='/' element={<Layout />} />
+          </Routes>
+        </BrowserRouter>
+      </DataContext.Provider>
+    </div >
   )
 }
 
