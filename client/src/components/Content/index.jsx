@@ -12,23 +12,6 @@ function Content({ curentTag, setCurentTag, allTags, setAllTags }) {
     const [recipes, setRecipes] = useState([]);// מערך שמחזיק את כל המתכונים 
 
 
-    // const getTags = (allRecipes) => {
-    //     // שלב 1: איסוף כל התגים למערך אחד
-    //     let tempAllTags = allRecipes.flatMap(recipe => recipe.tags);
-    //     console.log(tempAllTags, "temp");
-
-    //     // שלב 2: הסרת כפילויות
-    //     const uniqueTags = [...new Set(tempAllTags)];
-
-    //     console.log(uniqueTags, "uniqeTags");
-
-    //     setAllTags(uniqueTags);
-    //     console.log(allTags, "from content");
-
-    // }
-
-
-
     //פה מופעלת הקריאה במקרה של סינון לפי תגים
     useEffect(() => {
         const importDataByTag = async () => {
