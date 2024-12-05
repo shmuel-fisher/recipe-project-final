@@ -34,7 +34,8 @@ function UserRecipes() {
   }, [])
 
   return (<div>
-    <Link to={'/'}>Back</Link>
+    <Link to={'/'}>חזרה</Link>
+    <h3>המתכונים שלי </h3>
     <div className={style.item}>
       {recipes && recipes.map(item => <RecipeList
         key={item._id} item={item} />)

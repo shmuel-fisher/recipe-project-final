@@ -16,7 +16,7 @@ function RecipeList({ item }) {
            
                     <h3> {item.name} </h3>
                     <h4>  👁‍🗨 {item.views}   </h4>
-                    <img className={style.image} src={item.image} />
+                    <img className={style.recipeImage} src={item.image} />
                     <div >
                         <Details details={item} />
                     </div>

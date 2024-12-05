@@ -14,11 +14,11 @@ function SignIn() {
     const schema = yup.object().shape({
         lName: yup.string().required("your last name is required!"),
         fName: yup.string().required("your first name is required!"),
-        password: yup.string().required(),
-        email: yup.string().email().required(),
+        password: yup.string().required("Password is required!"),
+        email: yup.string().email("Invalid email format").required("Email is required!"),
         confirmPassword: yup.string()
             .oneOf([yup.ref("password")], "Passwords must match")
-            .required("Passwords don't match")
+            .required("Passwords don't match!")
     });
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -26,6 +26,8 @@ function SignIn() {
     });
 
     const [goodSign, setGoodSign] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     async function conect(data) {
         try {
@@ -38,44 +40,64 @@ function SignIn() {
             console.log(error.message);
         }
     }
+
     return (
         <div>
-            <Link to={'/'}>חזרה</Link>
+            <Link className={style.link} to={'/'}>חזרה</Link>
             <form className={style.signFrom} onSubmit={handleSubmit(conect)}>
                 <input
                     type="text" placeholder='שם משפחה'
                     {...register("lName", { required: "your last name is required!" })}
                 />
                 <br />
-                {errors.lName && <p>{errors.lName.message}</p>}
+                {errors.lName && <p className={style.error}>{errors.lName.message}</p>}
                 <input
                     type="text" placeholder='שם פרטי'
                     {...register("fName", { required: "your first name is required!" })}
                 />
                 <br />
-                {errors.fName && <p>{errors.fName.message}</p>}
+                {errors.fName && <p className={style.error}>{errors.fName.message}</p>}
                 <input
                     type="text" placeholder='דואר אלקטרוני'
                     {...register("email", { required: "email is required!" })}
                 />
                 <br />
-                {errors.email && <p>{errors.email.message}</p>}
-                <input
-                    type="password" placeholder='סיסמא'
-                    {...register("password", { required: "password is required!" })}
-                />
+                {errors.email && <p className={style.error}>{errors.email.message}</p>}
+                <div className={style.passwordContainer}>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder='סיסמא'
+                        {...register("password", { required: "password is required!" })}
+                    />
+                    <button
+                        type="button"
+                        className={style.eyeButton}
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? '👁️‍🗨️' : '👁️'}
+                    </button>
+                </div>
+                {errors.password && <p className={style.error}>{errors.password.message}</p>}
                 <br />
-                {errors.password && <p>{errors.password.message}</p>}
-                <input
-                    type="password" placeholder='אימות סיסמא'
-                    {...register("confirmPassword", { required: "confirm password is required!" })}
-                />
+                <div className={style.passwordContainer}>
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        placeholder='אימות סיסמא'
+                        {...register("confirmPassword", { required: "confirm password is required!" })}
+                    />
+                    <button
+                        type="button"
+                        className={style.eyeButton}
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                        {showConfirmPassword ? '👁️‍🗨️' : '👁️'}
+                    </button>
+                </div>
+                {errors.confirmPassword && <p className={style.error}>{errors.confirmPassword.message}</p>}
                 <br />
-                {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
                 <input type="submit" className={style.submit} />
             </form>
             <p>{goodSign} </p>
-
         </div>
     );
 }

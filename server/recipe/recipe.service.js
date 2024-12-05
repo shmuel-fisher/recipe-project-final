@@ -77,11 +77,20 @@ async function getAllTags() {
 
 async function updateRecipeAndActivate(recipeId, updateData) {
   // הוספת הלוגיקה לעדכון השדות והפעלת המתכון
+  console.log(updateData);
+
   updateData.isActive = true;
 
+  console.log(updateData, 22222);
+
   const updatedRecipe = await recipeController.updateRecipe(recipeId, updateData);
-  
+
   return updatedRecipe;
+}
+
+async function deleteRecipeByAdmain(recipeId) {
+const result = await recipeController.deleteRecipe(recipeId);
+return result;  
 }
 
 module.exports = {
@@ -94,5 +103,6 @@ module.exports = {
   findBy,
   search,
   getAllTags,
-  updateRecipeAndActivate
+  updateRecipeAndActivate,
+  deleteRecipeByAdmain
 }

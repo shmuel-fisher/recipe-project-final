@@ -10,7 +10,6 @@ function Layout() {
 
     //מחזיק את התג הנוכחי שנבחר בשביל החיפוש והצגת התוצאות
     const [curentTag, setCurentTag] = useState();
-    //נראה לי שאפשר למחוק את זה עדיין לא בטוח
     const [allTags, setAllTags] = useState([]);
 
     return (

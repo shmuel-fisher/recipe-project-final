@@ -1,94 +1,7 @@
-/* .admin-edit-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.admin-edit-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.submit-button {
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.submit-button:hover {
-    background-color: #218838;
-}
-
-.formInput {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    max-width: 500px;
-    width: 90%;
-}
-
-.final-approval-button,
-.close-button {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.final-approval-button {
-    background-color: #28a745;
-    color: white;
-}
-
-.close-button {
-    background-color: #dc3545;
-    color: white;
-} */
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-
 }
 
 .adminEditContainer {
@@ -97,16 +10,13 @@ body {
     margin: 20px auto;
     padding: 50px;
     border-radius: 10px;
-    background-color: aqua;
 }
 
 .adminEditForm {
     display: flex;
     flex-direction: column;
     width: 85%;
-    /* גורם לטופס להתפרש על כל רוחב הקונטיינר */
     max-width: 1000px;
-    /* אפשר לשנות את הערך לפי הצורך */
 }
 
 .editInput {
@@ -119,15 +29,6 @@ body {
     margin-bottom: 15px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-
-
-    /* margin-bottom: 15px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    white-space: pre-wrap;
-     overflow-wrap: break-word;  */
 }
 
 
@@ -136,39 +37,46 @@ label {
     font-weight: bold;
 }
 
-.submit-button {
+.submitButton {
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: #4CAF50;
+    background: #5bc0de;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     align-self: flex-start;
+    margin-right: 42%;
 }
 
-.submit-button:hover {
+
+.submitButton:hover {
     background-color: #45a049;
 }
 
-.productItem{
+.productItem {
     display: inline-block;
-    width: 80%;
+    width: 100%;
 }
 
 .removeButton {
-    margin-left: 10px; /* רווח בין הכפתור לתיבת הטקסט */
-    background-color: #dc3545; /* צבע הכפתור להסרה */
-    color: white;
-    border: none;
+    margin-left: 10px;
+    color: black;
+    border: solid 1px black;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    display:inline-block;
+    display: inline-block;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.removeButton:hover {
+    background-color: #d0d0d0;
 }
 
 /* עיצוב למודל */
-.modal {
+.recipeModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -181,7 +89,7 @@ label {
     z-index: 1000;
 }
 
-.modalContent {
+.recipeModalContent {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -191,17 +99,88 @@ label {
     text-align: center;
 }
 
+.modelSubmitButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: #5bc0de;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-left: 10px;
+}
+
+
+.modelSubmitButton:hover {
+    background-color: #45a049;
+}
+
 /* עיצוב כפתור ביטול */
-.cancel-button {
+.cancelButton {
     margin-left: 10px;
     background-color: red;
-    color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.cancel-button:hover {
+.cancelButton:hover {
     background-color: darkred;
+}
+
+.deleteModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.deleteModalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modalButtons {
+    margin-top: 15px;
+}
+
+.confirmButton {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.confirmButton:hover {
+    background: #c9302c;
+}
+
+.cancelDeleteButton {
+    background: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cancelDeleteButton:hover {
+    background: #31b0d5;
 }

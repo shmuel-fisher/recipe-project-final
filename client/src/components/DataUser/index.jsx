@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import DataContext from '../context/DataContext'
 import { Link } from 'react-router-dom';
+import style from './style.module.css'
 
 function DataUser() {
 
   const { curentUser } = useContext(DataContext);
 
   return (
-    <div >
+    <div className={style.container} >
       <div>{curentUser.lName} {curentUser.fName}</div>
        <br/><br/>
        {curentUser.favorite && <Link to={'/newRecipe'}>להוספת מתכון חדש</Link>}

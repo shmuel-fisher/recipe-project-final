@@ -5,8 +5,8 @@ async function create(data) {
 }
 
 async function readAll(isActive) {
-    let result= await recipeModule.find({ isActive: isActive });
-//    console.log(result); 
+    let result = await recipeModule.find({ isActive: isActive });
+    //    console.log(result); 
     return result;
 }
 
@@ -22,7 +22,9 @@ async function upDate(filter, data) {
 }
 
 async function readAllBy(field, filter) {
-    const query = {};
+    const query = {
+        isActive: true, // רק מתכונים שבהם isActive הוא true
+    };
     query[field] = filter;
     console.log(query, "query");
     return await recipeModule.find(query);
@@ -32,6 +34,7 @@ async function readAllBy(field, filter) {
 async function search(filter) {
     const query = {};
     query["name"] = { "$regex": `^${filter}` };
+    query["isActive"] = true;
     return await recipeModule.find(query);
 }
 
@@ -51,26 +54,22 @@ async function recipeMany() {
 
 
 async function allTags() {
-        // שורה זו מחפשת במסמכים במודול recipeModule ומחזירה רק את השדה tags
-    let result = await recipeModule.find({},{tags:1});
+    // שורה זו מחפשת במסמכים במודול recipeModule ומחזירה רק את השדה tags
+    let result = await recipeModule.find({ isActive: true }, { tags: 1 });
     return result;
 }
 
 
-// recipeRouter.put('/api/recipe/:id', async (req, res) => {
-//     try {
-//         const recipe = await recipeService.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//         res.status(200).json(recipe);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// });
-
 
 async function updateRecipe(recipeId, updateData) {
     // עדכון המתכון במסד הנתונים
-    const updatedRecipe = await recipeModule.findByIdAndUpdate(recipeId, updateData, { new : true });
+    const updatedRecipe = await recipeModule.findByIdAndUpdate(recipeId, updateData, { new: true });
     return updatedRecipe;
+}
+
+async function deleteRecipe(recipeId) {
+    const result = await recipeModule.deleteOne({ _id: recipeId })
+    return result
 }
 
 module.exports = {
@@ -83,5 +82,6 @@ module.exports = {
     search,
     recipeMany,
     allTags,
-    updateRecipe
+    updateRecipe,
+    deleteRecipe
 }

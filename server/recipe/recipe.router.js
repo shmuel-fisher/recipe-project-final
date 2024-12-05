@@ -3,9 +3,10 @@ const exprees = require('express');
 recipeRouter = exprees.Router();
 
 
-recipeRouter.get('/:id', async (req, res) => {
+recipeRouter.get('/:recipeId', async (req, res) => {
+    console.log(req.params.recipeId,11111);
     try {
-        let recipe = await recipeService.readOne(req.params.id);
+        let recipe = await recipeService.readOne(req.params.recipeId);
         console.log(recipe);
         res.send(recipe);
     }
@@ -79,22 +80,8 @@ recipeRouter.post('/status/:isActive', async (req, res) => {
 
 
 recipeRouter.post('/add', async (req, res) => {
-
-    // data = {
-    //     owner: req.body.owner,
-    //     name: req.body.name,
-    //     servings: req.body.servings,
-    //     type: req.body.type,
-    //     time: req.body.time,
-    //     level: req.body.level,
-    //     product: req.body.product,
-    //     directions: req.body.directions,
-    //     image: req.body.image,
-    //     tags: req.body.tags
-    // }
-
     try {
-       console.log(req.body.data,"from add router")
+        console.log(req.body.data, "from add router")
         let result = await recipeService.addNewRecipe(req.body.data);
         console.log(result + "result");
         res.send(result);
@@ -145,10 +132,12 @@ recipeRouter.get('/all/tags', (req, res) => {
 });
 
 
-recipeRouter.patch('/recipe/upDate/:id' ,async (req,res) =>{
+recipeRouter.patch('/admin/update/:id', async (req, res) => {
     try {
         const recipeId = req.params.id;
         const updateData = req.body;
+
+        console.log(recipeId, updateData, 1111);
 
         const updatedRecipe = await recipeService.updateRecipeAndActivate(recipeId, updateData);
 
@@ -162,6 +151,28 @@ recipeRouter.patch('/recipe/upDate/:id' ,async (req,res) =>{
     }
 });
 
+
+
+recipeRouter.delete('/admin/delete/:recipeId', async (req,res) => {
+    try {
+        const recipeId = req.params.recipeId;
+        // קריאה לשירות המחיקה
+        const result = await recipeService.deleteRecipeByAdmain(recipeId);
+        console.log(result);
+        if (result.deletedCount === 0) {
+            // אם לא נמצא מתכון למחיקה
+            return res.status(404).json({ success: false, message: 'Recipe not found' });
+        }
+
+        // מחיקה הצליחה
+        res.status(200).json({ success: true, message: 'Recipe deleted successfully' });
+
+    } catch (error) {
+        // טיפול בשגיאה לא צפויה
+        console.error('Error deleting recipe:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while deleting the recipe' });
+    }
+})
 
 
 module.exports = { recipeRouter };

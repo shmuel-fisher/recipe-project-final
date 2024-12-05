@@ -45,7 +45,6 @@ function Content({ curentTag, setCurentTag, allTags, setAllTags }) {
         catch (error) {
             console.log(error.message);
         }
-
     }
 
     //יש שני כניסות לדף פעם אחת בLINK TO 

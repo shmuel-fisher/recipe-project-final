@@ -29,8 +29,7 @@ function App() {
             <Route path='/favoriteRecipe' element={<UserFavoriteRecipe />} />
             <Route path='/userRecipes' element={<UserRecipes />} />
             <Route path='/deleteRecipe' element={<DeleteRecipe />} />
-            <Route path="/delete-recipe" element={<DeleteRecipe />} />
-            <Route path="/edit-recipe/:id" element={<AdminEditRecipe />} />
+            <Route path="/edit-recipe/:recipeId" element={<AdminEditRecipe />} />
             <Route path='/' element={<Layout />} />
           </Routes>
         </BrowserRouter>

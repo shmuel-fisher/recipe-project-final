@@ -21,7 +21,8 @@ userRouter.post('/', async (req, res) => {
 userRouter.post('/find', async (req, res) => {
     const lName = req.body.lName;
     const fName = req.body.fName;
-    const filter = { lName, fName }
+    const password = req.body.password;
+    const filter = { lName, fName, password }
     console.log(filter);
     try {
         let result = await userService.readUser(filter);
@@ -53,17 +54,16 @@ userRouter.post('/add/favoriteRecipe', async (req, res) => {
 
 userRouter.post('/delete/favorite', async (req, res) => {
     try {
-      const userId = req.body.userId;
-      const recipeName = req.body.recipeName;
-      console.log(userId , recipeName);
-      const result = await userService.deleteFavorite({ userId, recipeName });
-      console.log(result , "result");
-      res.send({ message: 'המתכון נמחק בהצלחה' });
+        const userId = req.body.userId;
+        const recipeName = req.body.recipeName;
+        const result = await userService.deleteFavorite({ userId, recipeName });
+        console.log(result, "result");
+        res.send({ message: 'המתכון נמחק בהצלחה' });
     } catch (error) {
-      console.error(error);
-      res.status(500).send('שגיאה במחיקת המתכון');
+        console.error(error);
+        res.status(500).send('שגיאה במחיקת המתכון');
     }
-  });
+});
 
 
 userRouter.delete('/:id', async (req, res) => {
@@ -92,6 +92,7 @@ userRouter.get('/all/:id', async (req, res) => {
 
 userRouter.get('/all/favorite/:email', async (req, res) => {
     try {
+        console.log(req.params.email);
         let user = await userService.readUser({ email: req.params.email });
         let result = user.favorite;
         let response = [];

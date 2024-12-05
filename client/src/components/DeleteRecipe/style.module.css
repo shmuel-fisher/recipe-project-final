@@ -45,22 +45,9 @@
   /* background: #fff; */
 }
 
-/* סטייל עבור כפתורים */
-/* button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-button:hover {
-  background-color: #0056b3;
-} */
-button {
+.submitButton {
   background-color:  #f8f9fa;
+  border: 2px solid #000;
   border-radius: 8px;
   padding: 8px 12px;
   text-align: center;
@@ -70,6 +57,6 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover  {
+.submitButton:hover  {
   background-color: #d0d0d0;
 }

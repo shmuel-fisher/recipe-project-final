@@ -30,7 +30,7 @@ export default function UploadImage({setImageUrl}) {
         .then((res) => {
           setUrl(res.data);
           setImageUrl(res.data);
-          alert("Image uploaded Succesfully");
+          alert("התמונה עלתה בהצלחה!");
         })
         .then(() => setLoading(false));
     } catch (error) {
