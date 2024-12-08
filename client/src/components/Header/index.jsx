@@ -5,8 +5,11 @@ import axios from 'axios';
 import DataContext from '../context/DataContext';
 
 function Header() {
+  
   const { curentUser, setCurentUser } = useContext(DataContext);
+
   const navigate = useNavigate();
+
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
 
@@ -53,17 +56,6 @@ function Header() {
           onChange={handelSearch}
           className={style.searchInput}
         />
-        {/* <div className={style.searchResults}>
-          {data && data.map((item, index) => (
-            <p
-              key={index}
-              className={style.searchResultItem}
-              onClick={() => navigate(`/recipe/${item.name}`)}
-            >
-              {item.name}
-            </p>
-          ))} 
-        </div>*/}
                 {data.length > 0 && (
           <div className={style.searchResults}>
             {data.map((item, index) => (
