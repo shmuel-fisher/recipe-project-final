@@ -73,7 +73,7 @@ function UserFavoriteRecipe() {
                 handelLess(item);
               }}
             >
-              ➖
+              להסרה
             </button>
           </div>
         ))}

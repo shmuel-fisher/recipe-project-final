@@ -5,12 +5,10 @@ import axios from 'axios'
 import { useEffect } from 'react'
 
 
-
-function Content({ curentTag, setCurentTag, allTags, setAllTags }) {
+function Content({ curentTag, setCurentTag}) {
 
 
     const [recipes, setRecipes] = useState([]);// מערך שמחזיק את כל המתכונים 
-
 
     //פה מופעלת הקריאה במקרה של סינון לפי תגים
     useEffect(() => {
@@ -33,14 +31,12 @@ function Content({ curentTag, setCurentTag, allTags, setAllTags }) {
 
 
 
-    //פה מופעלת הקריאה בכל כניסה לדף ומביאה את כל המתכונים
+    //פה מופעלת הקריאה בכל כניסה לדף ומביאה את כל המתכונים בתנאי שעברו אישור מנהל
     const importData = async () => {
-      let isActive =true;
         try {
-            let response = await axios.post(`http://localhost:8000/api/recipe/status/${isActive}`)
+            let response = await axios.post(`http://localhost:8000/api/recipe/status/${true}`)
             setRecipes(response.data);
             setCurentTag("");
-            // getTags(response.data);
         }
         catch (error) {
             console.log(error.message);

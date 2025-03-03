@@ -1,5 +1,5 @@
 .detailsContainer {
-    margin-top: 1rem;
+    margin-top: 0.1 rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 12px 10px; 
@@ -19,7 +19,7 @@
 
 .detailLabel {
     font-weight: bold;
-    margin-left: 0.5rem;
+    margin-left: 0.5 rem;
 }
 
 .detailText {

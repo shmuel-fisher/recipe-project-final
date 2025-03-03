@@ -87,13 +87,15 @@ function Login() {
                 <input type="submit" value="התחבר" />
             </form>
             {!flag && (
-                <Link to={'/Signin'}>
+                <>
                     <p>המשתמש לא נמצא במערכת</p>
                     <br />
-                    ⟸ להרשמה
-                </Link>
+                    <Link to="/Signin">
+                        <p>להרשמה לחץ 👈 </p>
+                    </Link>
+                </>
             )}
-        </div>
+        </div >
     );
 }
 

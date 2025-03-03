@@ -1,82 +1,116 @@
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    width: 100%;
-}
-
-.adminEditContainer {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  form {
+    width: 80%;
+    background-color: #ffffff;
     padding: 50px;
-    border-radius: 10px;
-}
-
-.adminEditForm {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
+    margin: 20px auto;
     max-width: 1000px;
-}
-
-.editInput {
-    flex-grow: 1;
-    padding: 10px;
-    margin-right: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-}
-
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.submitButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background: #5bc0de;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: flex-start;
-    margin-right: 42%;
-}
-
-
-.submitButton:hover {
-    background-color: #45a049;
-}
-
-.productItem {
-    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .errorText{
+    color: red;
+  }
+   
+  .addNewRecipeContainer input[type="text"],
+  .addNewRecipeContainer input[type="number"],
+  .addNewRecipeContainer input[type="time"],
+  select ,input  {
     width: 100%;
-}
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
 
-.removeButton {
-    margin-left: 10px;
-    color: black;
-    border: solid 1px black;
-    padding: 10px 20px;
-    border-radius: 5px;
+  
+  label {
+    display: block;
+    margin: 20px 0 5px 0;
+    font-weight: bold;
+
+  }
+  
+  .itemList{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    padding: 0 10px;
+    padding-bottom: 5px;
+  }
+  
+  .inputContainer{
+    background-color: rgb(236, 235, 235);
+  }
+  .inputContainer input{
+    width: 90%;
+  }
+
+  .item{
+    margin-bottom: 10px;
+  }
+
+  
+  .addButton {
+    margin-top: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+  }
+  
+  .addButton:hover {
+    background-color: #45a049;
+    border-color: #3e8e41;
+  }
+
+
+  .submitButton{
+    margin: 20px 0 0 0;
+  }
+  
+  .removeButton {
+    background-color: #e74a3b;
+    color: white;
+    border: 1px solid #e74a3b;
+    float: left; 
+    padding: 10px 10px;
+    margin-right: 10px; 
+    margin-top: 5px;
     cursor: pointer;
-    display: inline-block;
-    border-radius: 12px;
-    transition: background-color 0.3s ease;
-}
+    font-size: 14px;
+    border-radius: 4px;
+    display: block;
+  }
+  
+  .removeButton:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+  }
 
-.removeButton:hover {
-    background-color: #d0d0d0;
-}
 
-/* עיצוב למודל */
-.recipeModal {
+  
+  
+  /* עיצוב המודל */
+  .recipeModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -87,9 +121,9 @@ label {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-}
-
-.recipeModalContent {
+  }
+  
+  .recipeModalContent {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -97,40 +131,41 @@ label {
     max-height: 80%;
     overflow-y: auto;
     text-align: center;
-}
-
-.modelSubmitButton {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* עיצוב כפתור שליחה במודל */
+  .modalSubmitButton {
     padding: 10px 20px;
     font-size: 16px;
-    color: white;
     background: #5bc0de;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     align-self: flex-start;
     margin-left: 10px;
-}
-
-
-.modelSubmitButton:hover {
-    background-color: #45a049;
-}
-
-/* עיצוב כפתור ביטול */
-.cancelButton {
+  }
+  
+  .modalSubmitButton:hover {
+    background-color: #31b0d5;
+  }
+  
+  /* עיצוב כפתור ביטול */
+  .cancelButton {
     margin-left: 10px;
     background-color: red;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.cancelButton:hover {
+  }
+  
+  .cancelButton:hover {
     background-color: darkred;
-}
-
-.deleteModal {
+  }
+  
+  /* עיצוב מודל מחיקה */
+  .deleteModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -141,21 +176,21 @@ label {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
-
-.deleteModalContent {
+  }
+  
+  .deleteModalContent {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.modalButtons {
+  }
+  
+  .modalButtons {
     margin-top: 15px;
-}
-
-.confirmButton {
+  }
+  
+  .confirmButton {
     background: #d9534f;
     color: white;
     border: none;
@@ -165,13 +200,13 @@ label {
     margin-left: 10px;
     cursor: pointer;
     transition: background 0.3s ease;
-}
-
-.confirmButton:hover {
+  }
+  
+  .confirmButton:hover {
     background: #c9302c;
-}
-
-.cancelDeleteButton {
+  }
+  
+  .cancelDeleteButton {
     background: #5bc0de;
     color: white;
     border: none;
@@ -179,8 +214,12 @@ label {
     border-radius: 4px;
     cursor: pointer;
     transition: background 0.3s ease;
-}
-
-.cancelDeleteButton:hover {
+  }
+  
+  .cancelDeleteButton:hover {
     background: #31b0d5;
-}
+  }
+  
+  .modalImage{
+    width: 60%;
+  }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import style from './style.module.css';
 import { useNavigate } from 'react-router-dom';
 import DataContext from '../context/DataContext';
 
 function AdminEditRecipe() {
 
-    const { curentUser } = useContext(DataContext);
+    // const { curentUser } = useContext(DataContext);
     const navigate = useNavigate();
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState(null);
@@ -30,6 +30,7 @@ function AdminEditRecipe() {
         const fetchRecipe = async () => {
             try {
                 const response = await axios.get(`http://localhost:8000/api/recipe/${recipeId}`);
+               console.log(response.data);
                 setRecipe(response.data);
                 setFormData({
                     name: response.data.name,
@@ -40,6 +41,7 @@ function AdminEditRecipe() {
                     product: response.data.product,
                     directions: response.data.directions,
                     tags: response.data.tags,
+                    imageUrl: response.data.image
                 });
             } catch (error) {
                 console.error("Error fetching recipe:", error);
@@ -106,6 +108,9 @@ function AdminEditRecipe() {
         }
     };
 
+
+
+
     return (
         <div className={style.adminEditContainer}>
             {recipe ? (
@@ -113,15 +118,16 @@ function AdminEditRecipe() {
                     {showModal && (
                         <div className={style.recipeModal}>
                             <div className={style.recipeModalContent}>
-                                <h2>תוצאה סופית</h2>
-                                <p>שם המתכון: {formData.name}</p>
-                                <p>מנות: {formData.servings}</p>
-                                <p>סוג: {formData.type}</p>
-                                <p>זמן: {formData.time}</p>
-                                <p>רמת קושי: {formData.level}</p>
-                                <p>מוצרים: {formData.product.join(', ')}</p>
-                                <p>הוראות: {formData.directions.join(', ')}</p>
-                                <p>תגים: {formData.tags.join(', ')}</p>
+                                <h2>תוצאה סופית:</h2>
+                                <img src={formData.imageUrl} alt="תמונת המתכון" className={style.modalImage} />
+                                <p><span className={style.label}>שם המתכון:</span> {formData.name}</p>
+                                <p><span className={style.label}>מנות:</span> {formData.servings}</p>
+                                <p><span className={style.label}>סוג:</span> {formData.type}</p>
+                                <p><span className={style.label}>זמן:</span> {formData.time}</p>
+                                <p><span className={style.label}>רמת קושי:</span> {formData.level}</p>
+                                <p><span className={style.label}>מוצרים:</span> {formData.product.join(', ')}</p>
+                                <p><span className={style.label}>הוראות:</span> {formData.directions.join(', ')}</p>
+                                <p><span className={style.label}>תגים:</span> {formData.tags.join(', ')}</p>
                                 <button onClick={handleFinalApproval} className={style.modelSubmitButton}>אישור סופי</button>
                                 <button onClick={() => setShowModal(false)} className={style.cancelButton}>ביטול</button>
                             </div>
@@ -150,8 +156,9 @@ function AdminEditRecipe() {
                             onChange={handleChange}
                             className={style.editInput}
                         />
-                            <label>מנות:</label>
-                      <input
+
+                        <label>מנות:</label>
+                        <input
                             type="number"
                             name="servings"
                             value={formData.servings}
@@ -161,14 +168,17 @@ function AdminEditRecipe() {
                         />
 
                         <label>סוג:</label>
-                        <input
-                            type="text"
+                        <select
                             name="type"
                             value={formData.type}
                             onChange={handleChange}
                             className={style.editInput}
-                            style={{ whiteSpace: 'pre-wrap' }}
-                        />
+                        >
+                            <option value="חלבי">חלבי</option>
+                            <option value="בשרי">בשרי</option>
+                            <option value="פרווה">פרווה</option>
+                        </select>
+
 
                         <label>זמן הכנה:</label>
                         <input
@@ -191,63 +201,76 @@ function AdminEditRecipe() {
                         />
 
                         <label>מוצרים:</label>
-                        {formData.product.map((item, index) => (
-                            <div key={index} className={style.productItem}>
-                                <span>
+                        <div className={style.inputContainer}>
+                            {formData.product.map((item, index) => (
+                                <div key={index} className={style.item}>
+                                    <span>
+                                        <input
+                                            type="text"
+                                            value={item}
+                                            onChange={(e) => handleArrayChange(e, index, 'product')}
+                                            className={style.editInput}
+                                            style={{ whiteSpace: 'pre-wrap' }}
+                                        />
+                                        <button className={style.removeButton} type="button" onClick={() => handleRemoveProduct(index)}>להסיר</button>
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                        <button
+                            className={style.addButton}
+                            type="button"
+                            onClick={handleAddProduct}>להוסיף מוצר </button>
+                        <label>הוראות הכנה:</label>
+                        <div className={style.inputContainer}>
+                            {formData.directions.map((item, index) => (
+                                <div key={index} className={style.item}>
                                     <input
+                                        key={index}
                                         type="text"
                                         value={item}
-                                        onChange={(e) => handleArrayChange(e, index, 'product')}
+                                        onChange={(e) => handleArrayChange(e, index, 'directions')}
                                         className={style.editInput}
                                         style={{ whiteSpace: 'pre-wrap' }}
                                     />
-                                    <button className={style.removeButton} type="button" onClick={() => handleRemoveProduct(index)}>להסיר</button>
-                                </span>
-                            </div>
-                        ))}
-                        <br />
-                        <button type="button" onClick={handleAddProduct}>להוסיף מוצר </button>
-                        <br />
-                        <label>הוראות הכנה:</label>
-                        {formData.directions.map((item, index) => (
-                            <div key={index} className="product-item">
-                                <input
-                                    key={index}
-                                    type="text"
-                                    value={item}
-                                    onChange={(e) => handleArrayChange(e, index, 'directions')}
-                                    className={style.editInput}
-                                    style={{ whiteSpace: 'pre-wrap' }}
-                                />
-                                <button type="button" className={style.removeButton} onClick={() => handleRemoveDirections(index)}>להסיר</button>
-                            </div>
-                        ))}
-                        <br />
-                        <button type="button" onClick={handleAddDirections}>להוסיף הוראת הכנה</button>
+                                    <button type="button" className={style.removeButton} onClick={() => handleRemoveDirections(index)}>להסיר</button>
+                                </div>
+                            ))}
+                        </div>
+                        <button
+                            className={style.addButton}
+                            type="button"
+                            onClick={handleAddDirections}>להוסיף הוראת הכנה</button>
                         <br />
                         <label>תגים:</label>
-                        {formData.tags.map((item, index) => (
-                            <div key={index} className="product-item">
-                                <input
-                                    key={index}
-                                    type="text"
-                                    value={item}
-                                    onChange={(e) => handleArrayChange(e, index, 'tags')}
-                                    className={style.editInput}
-                                    style={{ whiteSpace: 'pre-wrap' }}
-                                />
-                                <button type="button" className={style.removeButton} onClick={() => handleRemoveTags(index)}>להסיר</button>
-                            </div>
-                        ))}
-                        <br />
-                        <button type="button" onClick={handleAddTags}>להוסיף תג</button>
+                        <div className={style.inputContainer}>
+                            {formData.tags.map((item, index) => (
+                                <div key={index} className={style.item}>
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        value={item}
+                                        onChange={(e) => handleArrayChange(e, index, 'tags')}
+                                        className={style.editInput}
+                                        style={{ whiteSpace: 'pre-wrap' }}
+                                    />
+                                    <button type="button" className={style.removeButton} onClick={() => handleRemoveTags(index)}>להסיר</button>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <button
+                            className={style.addButton}
+                            type="button"
+                            onClick={handleAddTags}>להוסיף תג</button>
                         <br />
                         <button type="submit" className={style.submitButton}>עדכון מתכון</button>
+
                     </form>
                     <button className={style.deleteButton} onClick={() => setShowDeleteModal(true)}>מחיקה</button>
                 </>
             ) : (
-                <p>טוען מתכונים...</p>
+                <p>אין מתכונים נוספים שממתינים לאישור</p>
             )}
         </div>
     );

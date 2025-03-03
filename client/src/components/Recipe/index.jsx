@@ -7,8 +7,9 @@ import Product from '../Product';
 import DataContext from '../context/DataContext';
 import style from './style.module.css';
 
+
 function Recipe() {
-    
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [recipe, setRecipe] = useState();
@@ -26,7 +27,21 @@ function Recipe() {
                 console.log(error);
             }
         };
-        getData();
+
+        const getDataByName = async () => {
+            try {
+                let response = await axios.post(`http://localhost:8000/api/recipe/by/name`, { name: id });
+                setRecipe(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (!isNaN(id.charAt(0))) {
+            getData();
+        } else {
+            getDataByName();
+        }
     }, [id]);
 
     useEffect(() => {
@@ -76,12 +91,26 @@ function Recipe() {
         navigate(`/recipe/${selectedRecipeId}`);
     };
 
+    const adminEdit = () => {
+        console.log(recipe,22222);
+        navigate(`/edit-recipe/${recipe._id}`)
+    }
+
     return (
         <div className={style.recipeContainer}>
-            <Link to={'/'} className={style.backLink}> חזרה </Link>
-            <button className={style.likeButton} onClick={handleLikes}>
-                ❤️
-            </button>
+            <div className={style.navigationBar}>
+                <Link to={'/'} className={style.backLink}> חזרה </Link>
+                <div className={style.actionButtons}>
+                    <button className={style.likeButton} onClick={handleLikes}>
+                        הוספה למועדפים
+                    </button>
+                    {curentUser.admin && <button
+                        className={style.adminButton}
+                        onClick={adminEdit}>
+                        <span>✏️</span> לעריכה
+                    </button>}
+                </div>
+            </div>
             <h1>{recipe && recipe.name}</h1>
             <div className={style.tagsContainer}>
                 {recipe && recipe.tags.map((tag, index) => (

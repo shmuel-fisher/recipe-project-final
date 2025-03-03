@@ -14,12 +14,11 @@ import AdminEditRecipe from './components/AdminEditResipe'
 
 function App() {
   //משתנים בסטייט ששומרים על מתכון ועל משתמש לכל האתר
-  const [curentRecipe, setCurentRecipe] = useState({});
   const [curentUser, setCurentUser] = useState({});
 
   return (
     <div>
-      <DataContext.Provider value={{ curentUser, setCurentUser, curentRecipe, setCurentRecipe }}>
+      <DataContext.Provider value={{ curentUser, setCurentUser }}>
         <BrowserRouter>
           <Routes>
             <Route path='/recipe/:id' element={<Recipe />} />
