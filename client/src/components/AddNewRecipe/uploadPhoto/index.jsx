@@ -118,7 +118,7 @@ export default function UploadImage({setImageUrl}) {
               </div>
             ) : (
               <label className={style.uploadLabel}>
-                <span className={style.uploadText}>לחץ להעלאת קובץ</span>
+                <span className={style.uploadText}>לחץ להעלאת תמונה</span>
                 <input
                   onChange={uploadImage}
                   type="file"

@@ -44,7 +44,7 @@ function Recipe() {
         }
     }, [id]);
 
-    useEffect(() => {
+    useEffect(() => { 
         const updateViews = async () => {
             if (recipe) {
                 try {
@@ -92,7 +92,6 @@ function Recipe() {
     };
 
     const adminEdit = () => {
-        console.log(recipe,22222);
         navigate(`/edit-recipe/${recipe._id}`)
     }
 

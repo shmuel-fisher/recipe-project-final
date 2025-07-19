@@ -11,7 +11,7 @@ function Layout() {
     //מחזיק את התג הנוכחי שנבחר בשביל החיפוש והצגת התוצאות
     const [curentTag, setCurentTag] = useState();
     const [allTags, setAllTags] = useState([]);
-
+ 
     return (
         <>
             <div className={style.header}> <Header/></div>

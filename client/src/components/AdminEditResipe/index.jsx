@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import style from './style.module.css';
 import { useNavigate } from 'react-router-dom';
-import DataContext from '../context/DataContext';
 
 function AdminEditRecipe() {
 
-    // const { curentUser } = useContext(DataContext);
     const navigate = useNavigate();
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState(null);
@@ -30,7 +28,7 @@ function AdminEditRecipe() {
         const fetchRecipe = async () => {
             try {
                 const response = await axios.get(`http://localhost:8000/api/recipe/${recipeId}`);
-               console.log(response.data);
+                console.log(response.data);
                 setRecipe(response.data);
                 setFormData({
                     name: response.data.name,
@@ -120,16 +118,20 @@ function AdminEditRecipe() {
                             <div className={style.recipeModalContent}>
                                 <h2>תוצאה סופית:</h2>
                                 <img src={formData.imageUrl} alt="תמונת המתכון" className={style.modalImage} />
-                                <p><span className={style.label}>שם המתכון:</span> {formData.name}</p>
-                                <p><span className={style.label}>מנות:</span> {formData.servings}</p>
-                                <p><span className={style.label}>סוג:</span> {formData.type}</p>
-                                <p><span className={style.label}>זמן:</span> {formData.time}</p>
-                                <p><span className={style.label}>רמת קושי:</span> {formData.level}</p>
-                                <p><span className={style.label}>מוצרים:</span> {formData.product.join(', ')}</p>
-                                <p><span className={style.label}>הוראות:</span> {formData.directions.join(', ')}</p>
-                                <p><span className={style.label}>תגים:</span> {formData.tags.join(', ')}</p>
-                                <button onClick={handleFinalApproval} className={style.modelSubmitButton}>אישור סופי</button>
-                                <button onClick={() => setShowModal(false)} className={style.cancelButton}>ביטול</button>
+                                <div className={style.recipeDetails}>
+                                    <p><span className={style.label}>שם המתכון:</span> {formData.name}</p>
+                                    <p><span className={style.label}>מנות:</span> {formData.servings}</p>
+                                    <p><span className={style.label}>סוג:</span> {formData.type}</p>
+                                    <p><span className={style.label}>זמן:</span> {formData.time}</p>
+                                    <p><span className={style.label}>רמת קושי:</span> {formData.level}</p>
+                                    <p><span className={style.label}>מוצרים:</span> {formData.product.join(', ')}</p>
+                                    <p><span className={style.label}>הוראות:</span> {formData.directions.join(', ')}</p>
+                                    <p><span className={style.label}>תגים:</span> {formData.tags.join(', ')}</p>
+                                </div>
+                                <div className={style.modalButtons}>
+                                    <button onClick={handleFinalApproval} className={style.modalSubmitButton}>אישור סופי</button>
+                                    <button onClick={() => setShowModal(false)} className={style.cancelButton}>ביטול</button>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -139,8 +141,8 @@ function AdminEditRecipe() {
                             <div className={style.deleteModalContent}>
                                 <h3>אישור מחיקה</h3>
                                 <p>האם אתה בטוח שברצונך למחוק את המתכון?</p>
-                                <div className={style.modalButtons}>
-                                    <button onClick={handelDeleteRecipe} className={style.confirmButton}>כן, מחק</button>
+                                <div className={style.modalDeleteButtons}>
+                                    <button onClick={handelDeleteRecipe} className={style.confirmButton}>כן</button>
                                     <button onClick={() => setShowDeleteModal(false)} className={style.cancelDeleteButton}>ביטול</button>
                                 </div>
                             </div>
@@ -258,13 +260,13 @@ function AdminEditRecipe() {
                                 </div>
                             ))}
                         </div>
-                        
+
                         <button
                             className={style.addButton}
                             type="button"
                             onClick={handleAddTags}>להוסיף תג</button>
                         <br />
-                        <button type="submit" className={style.submitButton}>עדכון מתכון</button>
+                        <button type="submit" className={style.submitButton}>שמירה</button>
 
                     </form>
                     <button className={style.deleteButton} onClick={() => setShowDeleteModal(true)}>מחיקה</button>
